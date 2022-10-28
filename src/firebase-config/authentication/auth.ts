@@ -21,13 +21,11 @@ export const signInWithGoogle = async () => {
   }
 };
 
-export const userRegistrationLocal = async (
+export const userRegistration = async (
   name: string,
   email: string,
-  password: string,
-  e: { preventDefault: () => void }
+  password: string
 ) => {
-  e.preventDefault();
   try {
     const res = await auth.createUserWithEmailAndPassword(email, password);
     const user: any = res.user;
