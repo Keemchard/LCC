@@ -1,13 +1,20 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+//component import
 import SigninPage from "./components/authPage/SigninPage";
+import LoginPage from "./components/authPage/LoginPage";
+//router import
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <SigninPage />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/sign-in" element={<SigninPage />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
