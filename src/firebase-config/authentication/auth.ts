@@ -4,6 +4,7 @@ import { database, provider, auth } from "../firebase";
 const signInWithGoogle = async () => {
   try {
     const res = await auth.signInWithPopup(provider);
+    console.log(res);
     const user: any = res.user;
     const userRef = collection(database, "users");
     const result = await getDocs(query(userRef, where("uid", "==", user.uid)));
@@ -15,7 +16,7 @@ const signInWithGoogle = async () => {
         email: user.email,
       });
     }
-  } catch (err: unknown | any) {
+  } catch (err: any) {
     alert(err.message);
   }
 };
