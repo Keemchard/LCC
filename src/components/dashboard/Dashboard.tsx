@@ -1,17 +1,35 @@
 import { getAuth } from "firebase/auth";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const auth = getAuth();
   const user = auth.currentUser;
+
+  const navigate = useNavigate();
+  console.log(user);
+
+  const logOut = () => {
+    auth.signOut();
+    navigate("/");
+  };
+
   return (
     <div>
       {user !== null ? (
         <div>
           <ul>
-            <li>DisplayName:{user.displayName}</li>
-            <li>email:{user.email}</li>
+            {user.displayName === null ? (
+              <div>
+                <li>email:{user.email}</li>
+              </div>
+            ) : (
+              <div>
+                <li>DisplayName:{user.displayName}</li>
+                <li>email:{user.email}</li>
+              </div>
+            )}
+
             <li>uid:{user.uid}</li>
           </ul>
           {user.photoURL !== null ? (
@@ -25,6 +43,10 @@ const Dashboard = () => {
           <Link to="/">Please Log In</Link>
         </div>
       )}
+
+      <br />
+      <br />
+      <button onClick={logOut}>Log out</button>
     </div>
   );
 };
