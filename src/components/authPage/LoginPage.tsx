@@ -15,15 +15,7 @@ const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [authenticated, setAuthenticated] = useState<boolean>(false);
 
-  const authentication = getAuth();
-  const user = authentication.currentUser;
-
-  useEffect(() => {
-    // user !== null && localStorage.setItem("userId", JSON.stringify(user.uid));
-    // const loggedInUser = localStorage.getItem("userId");
-    // console.log(loggedInUser);
-    console.log(user);
-  }, [user]);
+  //TODO create a localStorage to store auth (refresh issue)
 
   //timed error
   const timedError = (errorMsg: string) => {
@@ -80,7 +72,6 @@ const LoginPage = () => {
           email: user.email,
         });
       }
-      console.log(user);
       setName(user.displayName);
       setLoading(false);
       if (user.uid !== null) {

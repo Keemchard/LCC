@@ -5,6 +5,8 @@ const Dashboard = () => {
   const auth = getAuth();
   const user = auth.currentUser;
 
+  console.log(user);
+
   return (
     <>
       <Navbar />

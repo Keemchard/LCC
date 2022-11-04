@@ -8,11 +8,12 @@ const Navbar = () => {
   const auth = getAuth();
   const navigate = useNavigate();
 
-  const user = auth.currentUser;
+  let user = auth.currentUser;
+  console.log(auth);
 
   useEffect(() => {
     console.log(user);
-  }, [user]);
+  }, [user, auth]);
 
   const logOut = async () => {
     setLoading(true);
