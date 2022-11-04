@@ -91,9 +91,12 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="h-[100vh] bg-[gray] p-[20px] flex items-center justify-center">
+    <div className="h-[100vh] bg-[gray] p-[20px] flex flex-col items-center justify-center">
+      <div className="mb-[50px]  text-[20px] font-semibold">
+        <Link to="/dashboard/guest">Enter as Guest/Visitor</Link>
+      </div>
       <div className="bg-[white] h-[auto] w-[350px] p-[10px] pt-[20px] pb-[40px] text-center">
-        <h1 className="text-[30px] mb-[20px]">LoginPage</h1>
+        <h1 className="text-[30px] mb-[20px] font-bold">LoginPage</h1>
         <form
           onSubmit={manualSignIn}
           className="bg-[gray] flex flex-col p-[10px]"
@@ -134,7 +137,7 @@ const LoginPage = () => {
           </button>
         </div>
         <div className="m-[10px]  hover:text-[green] ">
-          <Link to="/sign-in">Sign Up</Link>
+          <Link to="/sign-up">Sign Up</Link>
         </div>
 
         {/* {errorMessage !== "" && (
