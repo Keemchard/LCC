@@ -1,26 +1,17 @@
 import { getAuth } from "firebase/auth";
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 
 const Dashboard = () => {
   const auth = getAuth();
   const user = auth.currentUser;
 
-  const navigate = useNavigate();
-  console.log(user);
-
-  const logOut = () => {
-    auth.signOut();
-    navigate("/");
-  };
-
   return (
     <>
       <Navbar />
       <div className="mt-[100px]">
         <div className="max-w-[1366px] bg-[gray] m-[auto]">
-          {user !== null ? (
+          {user === null && <div>You're visiting as a Guest/Visitor</div>}
+          {user !== null && (
             <>
               <div>
                 <ul>
@@ -43,15 +34,7 @@ const Dashboard = () => {
                   <div>No Image yet</div>
                 )}
               </div>
-
-              <br />
-              <br />
-              <button onClick={logOut}>Log out</button>
             </>
-          ) : (
-            <div>
-              <Link to="/">Please Log In</Link>
-            </div>
           )}
         </div>
       </div>

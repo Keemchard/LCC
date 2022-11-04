@@ -1,17 +1,29 @@
 import { getAuth } from "firebase/auth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loading from "../loadings/Loading";
 
 const Navbar = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const auth = getAuth();
   const navigate = useNavigate();
 
   const user = auth.currentUser;
 
-  const logOut = () => {
-    auth.signOut();
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  const logOut = async () => {
+    setLoading(true);
+    await auth.signOut();
+    setLoading(false);
     navigate("/");
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="bg-[salmon] p-[20px] pl-[40px] pr-[40px] flex items-center fixed w-[100%] top-0">

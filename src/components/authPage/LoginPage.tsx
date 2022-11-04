@@ -1,9 +1,10 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { collection, addDoc, where, query, getDocs } from "firebase/firestore";
 import { database, provider, auth } from "../../firebase-config/firebase";
 import Loading from "../loadings/Loading";
 import { Alert } from "@mui/material";
+import { getAuth } from "firebase/auth";
 
 const LoginPage = () => {
   const [name, setName] = useState<string>("");
@@ -13,6 +14,16 @@ const LoginPage = () => {
   // const [hasError, setHasError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [authenticated, setAuthenticated] = useState<boolean>(false);
+
+  const authentication = getAuth();
+  const user = authentication.currentUser;
+
+  useEffect(() => {
+    // user !== null && localStorage.setItem("userId", JSON.stringify(user.uid));
+    // const loggedInUser = localStorage.getItem("userId");
+    // console.log(loggedInUser);
+    console.log(user);
+  }, [user]);
 
   //timed error
   const timedError = (errorMsg: string) => {
@@ -69,6 +80,7 @@ const LoginPage = () => {
           email: user.email,
         });
       }
+      console.log(user);
       setName(user.displayName);
       setLoading(false);
       if (user.uid !== null) {
