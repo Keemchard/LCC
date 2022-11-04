@@ -2,8 +2,8 @@ import React, { FormEvent, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { collection, addDoc, where, query, getDocs } from "firebase/firestore";
 import { database, provider, auth } from "../../firebase-config/firebase";
-import ErrorContent from "../errorPage/ErrorContent";
 import Loading from "../loadings/Loading";
+import { Alert } from "@mui/material";
 
 const LoginPage = () => {
   const [name, setName] = useState<string>("");
@@ -92,15 +92,15 @@ const LoginPage = () => {
 
   return (
     <div className="h-[100vh] bg-[gray] p-[20px] flex items-center justify-center">
-      <div className="bg-[white] h-[500px] w-[300px] p-[10px] text-center">
+      <div className="bg-[white] h-[auto] w-[350px] p-[10px] pt-[20px] pb-[40px] text-center">
         <h1 className="text-[30px] mb-[20px]">LoginPage</h1>
         <form
           onSubmit={manualSignIn}
           className="bg-[gray] flex flex-col p-[10px]"
         >
           <input
-            className="mb-[5px] p-[10px]"
-            type="text"
+            className="mb-[9px] p-[10px]"
+            type="Email"
             required
             placeholder="email"
             value={email}
@@ -109,8 +109,8 @@ const LoginPage = () => {
             }}
           />
           <input
-            className="mb-[5px] p-[10px]"
-            type="text"
+            className="mb-[9px] p-[10px]"
+            type="Password"
             required
             placeholder="password"
             value={password}
@@ -124,7 +124,7 @@ const LoginPage = () => {
             value="Log In"
           />
         </form>
-        <p className="m-[20px]">or</p>
+        <p className="m-[20px]">- or -</p>
         <div>
           <button
             className="mt-[15px] p-[10px] bg-[lightgray]"
@@ -137,7 +137,17 @@ const LoginPage = () => {
           <Link to="/sign-in">Sign Up</Link>
         </div>
 
-        <div className="text-[red]">{errorMessage}</div>
+        {/* {errorMessage !== "" && (
+          <Snackbar open={true} autoHideDuration={6000}>
+            <Alert severity="error" sx={{ width: "100%" }}>
+              {errorMessage}
+            </Alert>
+          </Snackbar>
+        )} */}
+
+        {errorMessage !== "" && <Alert severity="error">{errorMessage}</Alert>}
+
+        {/* <div className="text-[red]">{errorMessage}</div> */}
       </div>
     </div>
   );
