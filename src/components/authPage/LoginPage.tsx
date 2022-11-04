@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { collection, addDoc, where, query, getDocs } from "firebase/firestore";
 import { database, provider, auth } from "../../firebase-config/firebase";
 import ErrorContent from "../errorPage/ErrorContent";
+import Loading from "../loadings/Loading";
 
 const LoginPage = () => {
   const [name, setName] = useState<string>("");
@@ -82,7 +83,7 @@ const LoginPage = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (authenticated) {
