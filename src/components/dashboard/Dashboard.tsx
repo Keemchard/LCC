@@ -17,36 +17,38 @@ const Dashboard = () => {
   return (
     <div>
       {user !== null ? (
-        <div>
-          <ul>
-            {user.displayName === null ? (
-              <div>
-                <li>email:{user.email}</li>
-              </div>
-            ) : (
-              <div>
-                <li>DisplayName:{user.displayName}</li>
-                <li>email:{user.email}</li>
-              </div>
-            )}
+        <>
+          <div>
+            <ul>
+              {user.displayName === null ? (
+                <div>
+                  <li>email:{user.email}</li>
+                </div>
+              ) : (
+                <div>
+                  <li>DisplayName:{user.displayName}</li>
+                  <li>email:{user.email}</li>
+                </div>
+              )}
 
-            <li>uid:{user.uid}</li>
-          </ul>
-          {user.photoURL !== null ? (
-            <img src={user.photoURL} alt="" />
-          ) : (
-            <div>No Image yet</div>
-          )}
-        </div>
+              <li>uid:{user.uid}</li>
+            </ul>
+            {user.photoURL !== null ? (
+              <img src={user.photoURL} alt="" />
+            ) : (
+              <div>No Image yet</div>
+            )}
+          </div>
+
+          <br />
+          <br />
+          <button onClick={logOut}>Log out</button>
+        </>
       ) : (
         <div>
           <Link to="/">Please Log In</Link>
         </div>
       )}
-
-      <br />
-      <br />
-      <button onClick={logOut}>Log out</button>
     </div>
   );
 };

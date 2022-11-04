@@ -18,7 +18,7 @@ const LoginPage = () => {
     setErrorMessage(errorMsg);
     setTimeout(() => {
       setErrorMessage("");
-    }, 5000);
+    }, 8500);
   };
 
   //MANUAL sign in
@@ -85,49 +85,59 @@ const LoginPage = () => {
     return <div>Loading...</div>;
   }
 
-  // if (errorMessage !== "") {
-  //   return <div>{}</div>;
-  // }
-
   if (authenticated) {
     return <Navigate replace to={`/dashboard/${name}`} />;
   }
 
   return (
-    <div>
-      <h1>LoginPage</h1>
-      <br />
-      <form onSubmit={manualSignIn}>
-        <input
-          type="text"
-          required
-          placeholder="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          required
-          placeholder="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <input type="submit" value="Create Acoount" />
-      </form>
-      <br />
-      <div>
-        <div>or</div>
-        <button onClick={signInWithGoogle}>Sign in with Google</button>
+    <div className="h-[100vh] bg-[gray] p-[20px] flex items-center justify-center">
+      <div className="bg-[white] h-[500px] w-[300px] p-[10px] text-center">
+        <h1 className="text-[30px] mb-[20px]">LoginPage</h1>
+        <form
+          onSubmit={manualSignIn}
+          className="bg-[gray] flex flex-col p-[10px]"
+        >
+          <input
+            className="mb-[5px] p-[10px]"
+            type="text"
+            required
+            placeholder="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <input
+            className="mb-[5px] p-[10px]"
+            type="text"
+            required
+            placeholder="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <input
+            className="mt-[15px] p-[10px] bg-[lightgray]"
+            type="submit"
+            value="Log In"
+          />
+        </form>
+        <p className="m-[20px]">or</p>
+        <div>
+          <button
+            className="mt-[15px] p-[10px] bg-[lightgray]"
+            onClick={signInWithGoogle}
+          >
+            Sign in with Google
+          </button>
+        </div>
+        <div className="m-[10px]  hover:text-[green] ">
+          <Link to="/sign-in">Sign Up</Link>
+        </div>
+
+        <div className="text-[red]">{errorMessage}</div>
       </div>
-      <br />
-      <div>
-        No Account? <Link to="/sign-in">Sign Up</Link>
-      </div>
-      <div>{errorMessage}</div>
     </div>
   );
 };
